@@ -4,6 +4,13 @@ struct ContentView: View {
     @State private var scaleLengthText: String = "25.5"
     @State private var fretCountText: String = "24"
 
+    var scaleLengthMM: String {
+        if let scaleLengthInches = Double(scaleLengthText) {
+            return Clipboard.format(scaleLengthInches * 25.4)
+        }
+        return "—"
+    }
+
     var positions: [FretPosition] {
         guard let scaleLengthInches = Double(scaleLengthText),
               let fretCount = Int(fretCountText) else {
@@ -15,12 +22,19 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: 16) {
             VStack(spacing: 8) {
-                HStack {
-                    Label("Scale Length (inches):", systemImage: "ruler")
-                        .frame(width: 180, alignment: .leading)
-                    TextField("", text: $scaleLengthText)
-                        .textFieldStyle(.roundedBorder)
-                        .frame(width: 100)
+                VStack(spacing: 4) {
+                    HStack {
+                        Label("Scale Length (inches):", systemImage: "ruler")
+                            .frame(width: 180, alignment: .leading)
+                        TextField("", text: $scaleLengthText)
+                            .textFieldStyle(.roundedBorder)
+                            .frame(width: 100)
+                        Text("= \(scaleLengthMM) mm")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                            .frame(width: 100, alignment: .leading)
+                        Spacer()
+                    }
                 }
 
                 HStack {
