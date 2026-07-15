@@ -2,7 +2,7 @@ import AppKit
 
 enum Clipboard {
     static func copyTSV(_ positions: [FretPosition]) {
-        var lines = ["Fret\tDistance from Nut (mm)\tDistance from Previous Fret (mm)"]
+        var lines: [String] = []
         for p in positions {
             lines.append("F\(p.fretNumber)\t\(format(p.distanceFromNutMM))\t\(format(p.distanceFromPreviousMM))")
         }
@@ -11,7 +11,7 @@ enum Clipboard {
     }
 
     static func copyColumn2(_ positions: [FretPosition]) {
-        var lines = ["Distance from Nut (mm)"]
+        var lines: [String] = []
         for p in positions {
             lines.append(format(p.distanceFromNutMM))
         }
@@ -20,7 +20,7 @@ enum Clipboard {
     }
 
     static func copyColumn3(_ positions: [FretPosition]) {
-        var lines = ["Distance from Previous Fret (mm)"]
+        var lines: [String] = []
         for p in positions {
             lines.append(format(p.distanceFromPreviousMM))
         }
