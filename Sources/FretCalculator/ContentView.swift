@@ -54,15 +54,33 @@ struct ContentView: View {
             }
             .disabled(positions.isEmpty)
 
-            HStack(spacing: 12) {
-                Button(action: {
-                    Clipboard.copyTSV(positions)
-                }) {
-                    Label("Copy Table", systemImage: "doc.on.doc")
-                }
-                .disabled(positions.isEmpty)
+            VStack(spacing: 8) {
+                HStack(spacing: 12) {
+                    Menu {
+                        Button(action: {
+                            Clipboard.copyTSV(positions)
+                        }) {
+                            Label("Entire Table", systemImage: "table")
+                        }
+                        Divider()
+                        Button(action: {
+                            Clipboard.copyColumn2(positions)
+                        }) {
+                            Label("Column 2: From Nut (mm)", systemImage: "list.number")
+                        }
+                        Button(action: {
+                            Clipboard.copyColumn3(positions)
+                        }) {
+                            Label("Column 3: Spacing (mm)", systemImage: "list.number")
+                        }
+                    } label: {
+                        Label("Copy", systemImage: "doc.on.doc")
+                    }
+                    .disabled(positions.isEmpty)
 
-                Spacer()
+                    Spacer()
+                }
+                .padding(.horizontal, 4)
             }
             .padding(.bottom, 16)
         }
