@@ -112,7 +112,7 @@ ls -lh Resources/AppIcon/source.png
 
 If missing, re-copy the source image:
 ```bash
-cp "/path/to/home/Desktop/Screenshot 2026-07-15 at 20.09.19.png" Resources/AppIcon/source.png
+cp "path/to/your-icon-image.png" Resources/AppIcon/source.png
 ```
 
 ### App Won't Launch After Build
